@@ -2,15 +2,15 @@ name: Publish to JSR
 
 on:
   push:
-    tags:
-      - "v*"   # triggers on tags like v0.1.0, v1.2.3
+    branches:
+      - master   # publish on every push to master
 
 jobs:
   publish:
     name: Publish packages
     runs-on: ubuntu-latest
 
-    # Required for JSR OIDC token exchange (no API key needed)
+    # Required for JSR OIDC token exchange — no API key needed
     permissions:
       contents: read
       id-token: write
@@ -36,9 +36,7 @@ jobs:
           deno check packages/cli/mod.ts
 
       - name: Run tests
-        run: |
-          deno test --allow-net --allow-env packages/core/tests/
-          deno test --allow-read --allow-write --allow-env packages/cli/tests/
+        run: deno test --allow-net --allow-env --allow-read --allow-write packages/
 
       # -----------------------------------------------------------------------
       # Publish @supabase-alerts/core
@@ -46,8 +44,6 @@ jobs:
       - name: Publish core to JSR
         run: deno publish
         working-directory: packages/core
-        # Uses GitHub OIDC — no JSR_TOKEN secret required.
-        # The JSR scope must have this repo linked at jsr.io/settings.
 
       # -----------------------------------------------------------------------
       # Publish @supabase-alerts/cli
