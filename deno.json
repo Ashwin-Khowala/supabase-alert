@@ -1,0 +1,13 @@
+{
+  "workspace": ["./packages/core", "./packages/cli"],
+  "tasks": {
+    "test": "deno test --allow-net --allow-env --allow-read --allow-write packages/",
+    "test:core": "deno test --allow-net --allow-env packages/core/tests/",
+    "test:cli": "deno test --allow-read --allow-write --allow-env packages/cli/tests/",
+    "lint": "deno lint packages/",
+    "fmt": "deno fmt packages/ examples/",
+    "fmt:check": "deno fmt --check packages/ examples/",
+    "check": "deno check packages/core/mod.ts packages/cli/mod.ts",
+    "dry-run": "deno publish --dry-run"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@supabase-alerts/core",
+  "version": "0.1.0",
+  "exports": "./mod.ts",
+  "license": "MIT",
+  "imports": {
+    "@std/assert": "jsr:@std/assert@^1.0.0"
+  },
+  "publish": {
+    "include": [
+      "mod.ts",
+      "types.ts",
+      "notifier.ts",
+      "retry.ts",
+      "channels/"
+    ]
+  }
+}

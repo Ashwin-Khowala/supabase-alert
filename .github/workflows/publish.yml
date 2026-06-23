@@ -1,0 +1,57 @@
+name: Publish to JSR
+
+on:
+  push:
+    tags:
+      - "v*"   # triggers on tags like v0.1.0, v1.2.3
+
+jobs:
+  publish:
+    name: Publish packages
+    runs-on: ubuntu-latest
+
+    # Required for JSR OIDC token exchange (no API key needed)
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      # -----------------------------------------------------------------------
+      # Run CI checks before publishing
+      # -----------------------------------------------------------------------
+      - name: Lint
+        run: deno lint packages/
+
+      - name: Type check
+        run: |
+          deno check packages/core/mod.ts
+          deno check packages/cli/mod.ts
+
+      - name: Run tests
+        run: |
+          deno test --allow-net --allow-env packages/core/tests/
+          deno test --allow-read --allow-write --allow-env packages/cli/tests/
+
+      # -----------------------------------------------------------------------
+      # Publish @supabase-alerts/core
+      # -----------------------------------------------------------------------
+      - name: Publish core to JSR
+        run: deno publish
+        working-directory: packages/core
+        # Uses GitHub OIDC — no JSR_TOKEN secret required.
+        # The JSR scope must have this repo linked at jsr.io/settings.
+
+      # -----------------------------------------------------------------------
+      # Publish @supabase-alerts/cli
+      # -----------------------------------------------------------------------
+      - name: Publish cli to JSR
+        run: deno publish
+        working-directory: packages/cli

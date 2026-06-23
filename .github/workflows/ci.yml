@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test & Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      # -----------------------------------------------------------------------
+      # Formatting
+      # -----------------------------------------------------------------------
+      - name: Check formatting
+        run: deno fmt --check packages/ examples/
+
+      # -----------------------------------------------------------------------
+      # Linting
+      # -----------------------------------------------------------------------
+      - name: Lint
+        run: deno lint packages/
+
+      # -----------------------------------------------------------------------
+      # Type checking
+      # -----------------------------------------------------------------------
+      - name: Type check core
+        run: deno check packages/core/mod.ts
+
+      - name: Type check cli
+        run: deno check packages/cli/mod.ts
+
+      # -----------------------------------------------------------------------
+      # Tests
+      # -----------------------------------------------------------------------
+      - name: Run core tests
+        run: deno test --allow-net --allow-env packages/core/tests/
+
+      - name: Run CLI tests
+        run: deno test --allow-read --allow-write --allow-env packages/cli/tests/
+
+      # -----------------------------------------------------------------------
+      # JSR publish dry-run (validates package.json, exports, slow types)
+      # -----------------------------------------------------------------------
+      - name: JSR publish dry-run (core)
+        run: deno publish --dry-run
+        working-directory: packages/core
+
+      - name: JSR publish dry-run (cli)
+        run: deno publish --dry-run
+        working-directory: packages/cli
