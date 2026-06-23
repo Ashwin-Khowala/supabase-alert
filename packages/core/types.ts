@@ -1,5 +1,5 @@
 /**
- * Shared types for @supabase-alerts/core
+ * Shared types for @ashwinkh/supabase-alerts
  */
 
 /** Alert severity level. */

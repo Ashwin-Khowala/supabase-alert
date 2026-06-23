@@ -1,5 +1,5 @@
 /**
- * createNotifier — the main factory for @supabase-alerts/core.
+ * createNotifier — the main factory for @ashwinkh/supabase-alerts.
  *
  * Returns a notifier object with convenience methods (info, warn, error, critical)
  * and a raw `notify` method.
@@ -52,7 +52,7 @@ export interface Notifier {
  *
  * @example
  * ```ts
- * import { createNotifier } from 'jsr:@supabase-alerts/core';
+ * import { createNotifier } from 'jsr:@ashwinkh/supabase-alerts';
  *
  * const alert = createNotifier({
  *   channel: 'telegram',

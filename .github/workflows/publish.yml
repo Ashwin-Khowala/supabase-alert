@@ -28,7 +28,7 @@ jobs:
       # Run CI checks before publishing
       # -----------------------------------------------------------------------
       - name: Lint
-        run: deno lint packages/
+        run: deno lint
 
       - name: Type check
         run: |
@@ -39,14 +39,14 @@ jobs:
         run: deno test --allow-net --allow-env --allow-read --allow-write packages/
 
       # -----------------------------------------------------------------------
-      # Publish @supabase-alerts/core
+      # Publish @ashwinkh/supabase-alerts
       # -----------------------------------------------------------------------
       - name: Publish core to JSR
         run: deno publish
         working-directory: packages/core
 
       # -----------------------------------------------------------------------
-      # Publish @supabase-alerts/cli
+      # Publish @ashwinkh/supabase-alerts-cli
       # -----------------------------------------------------------------------
       - name: Publish cli to JSR
         run: deno publish

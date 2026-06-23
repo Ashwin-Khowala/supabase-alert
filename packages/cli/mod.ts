@@ -1,9 +1,9 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-env
 /**
- * @supabase-alerts/cli
+ * @ashwinkh/supabase-alerts-cli
  *
  * Usage:
- *   deno run -A jsr:@supabase-alerts/cli init
+ *   deno run -A jsr:@ashwinkh/supabase-alerts-cli init
  *
  * Scaffolds SQL watchdogs and an error-notifier edge function
  * into your Supabase project directory.
@@ -20,7 +20,7 @@ switch (command) {
 
   case "--version":
   case "-v":
-    console.log("@supabase-alerts/cli v0.1.0");
+    console.log("@ashwinkh/supabase-alerts-cli v0.1.0");
     break;
 
   case "--help":
@@ -37,10 +37,10 @@ switch (command) {
 
 function printHelp(): void {
   console.log(`
-@supabase-alerts/cli — scaffold alerting into your Supabase project
+@ashwinkh/supabase-alerts-cli — scaffold alerting into your Supabase project
 
 Usage:
-  deno run -A jsr:@supabase-alerts/cli <command>
+  deno run -A jsr:@ashwinkh/supabase-alerts-cli <command>
 
 Commands:
   init    Interactively set up watchdogs and the error-notifier edge function
@@ -48,6 +48,6 @@ Commands:
   --version Show CLI version
 
 Examples:
-  deno run -A jsr:@supabase-alerts/cli init
+  deno run -A jsr:@ashwinkh/supabase-alerts-cli init
 `);
 }

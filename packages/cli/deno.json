@@ -1,5 +1,5 @@
 {
-  "name": "@supabase-alerts/cli",
+  "name": "@ashwinkh/supabase-alerts-cli",
   "version": "0.1.0",
   "exports": "./mod.ts",
   "license": "MIT",

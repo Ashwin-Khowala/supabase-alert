@@ -26,7 +26,10 @@ function stubFetch(_ok: boolean, status = 200, text = "ok") {
     input: string | URL | Request,
     init?: RequestInit,
   ): Promise<Response> => {
-    calls.push({ url: String(input), body: JSON.parse(init?.body as string ?? "{}") });
+    calls.push({
+      url: String(input),
+      body: JSON.parse(init?.body as string ?? "{}"),
+    });
     return Promise.resolve(new Response(text, { status }));
   };
   return {

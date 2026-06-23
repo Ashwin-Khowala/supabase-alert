@@ -69,10 +69,9 @@ Deno.test("slack: header block contains context and severity", async () => {
   const { calls, restore } = stubFetch(true);
   await sendSlack(PAYLOAD, BASE_CONFIG);
   restore();
-  const att =
-    (calls[0].body as {
-      attachments: { blocks: { text: { text: string } }[] }[];
-    }).attachments[0];
+  const att = (calls[0].body as {
+    attachments: { blocks: { text: { text: string } }[] }[];
+  }).attachments[0];
   const header = att.blocks[0].text.text;
   assertEquals(header.includes("CRITICAL"), true);
   assertEquals(header.includes("payments-webhook"), true);

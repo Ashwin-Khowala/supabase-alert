@@ -1,5 +1,5 @@
 /**
- * Example: Using @supabase-alerts/core with Slack
+ * Example: Using @ashwinkh/supabase-alerts with Slack
  *
  * Required env vars:
  *   SLACK_WEBHOOK_URL — Incoming Webhook URL from Slack App settings
@@ -7,8 +7,8 @@
  * Run locally:
  *   SLACK_WEBHOOK_URL=https://hooks.slack.com/... deno run --allow-net --allow-env index.ts
  */
-
-import { createNotifier } from "jsr:@supabase-alerts/core";
+// deno-lint-ignore-file no-import-prefix no-unversioned-import
+import { createNotifier } from "jsr:@ashwinkh/supabase-alerts";
 
 const alert = createNotifier({
   channel: "slack",

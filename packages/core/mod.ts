@@ -1,5 +1,5 @@
 /**
- * @supabase-alerts/core
+ * @ashwinkh/supabase-alerts
  *
  * Zero-config alerting for Supabase Edge Functions.
  * Supports Telegram, Slack, and Discord with fire-and-forget delivery,
@@ -7,7 +7,7 @@
  *
  * @example
  * ```ts
- * import { createNotifier } from 'jsr:@supabase-alerts/core';
+ * import { createNotifier } from 'jsr:@ashwinkh/supabase-alerts';
  *
  * const alert = createNotifier({
  *   channel: 'telegram',

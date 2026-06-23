@@ -25,7 +25,9 @@ function stubFetch(
   ): Promise<Response> => {
     const body = init?.body ? JSON.parse(init.body as string) : null;
     calls.push({ url: String(input), body });
-    return Promise.resolve(new Response(response.text, { status: response.status }));
+    return Promise.resolve(
+      new Response(response.text, { status: response.status }),
+    );
   };
 
   return {

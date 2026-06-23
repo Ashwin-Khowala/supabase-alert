@@ -1,5 +1,5 @@
 /**
- * Example: Using @supabase-alerts/core with Discord
+ * Example: Using @ashwinkh/supabase-alerts with Discord
  *
  * Required env vars:
  *   DISCORD_WEBHOOK_URL — from Server Settings → Integrations → Webhooks
@@ -7,8 +7,8 @@
  * Run locally:
  *   DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/... deno run --allow-net --allow-env index.ts
  */
-
-import { createNotifier } from "jsr:@supabase-alerts/core";
+// deno-lint-ignore-file no-import-prefix no-unversioned-import
+import { createNotifier } from "jsr:@ashwinkh/supabase-alerts";
 
 const alert = createNotifier({
   channel: "discord",
@@ -22,7 +22,7 @@ const alert = createNotifier({
   },
 });
 
-Deno.serve(async (req: Request) => {
+Deno.serve((req: Request) => {
   try {
     // Example: check for missing auth header
     if (!req.headers.get("authorization")) {

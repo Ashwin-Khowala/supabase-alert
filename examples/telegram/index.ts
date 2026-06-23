@@ -1,5 +1,5 @@
 /**
- * Example: Using @supabase-alerts/core with Telegram
+ * Example: Using @ashwinkh/supabase-alerts with Telegram
  *
  * Required env vars:
  *   TELEGRAM_BOT_TOKEN  — from @BotFather
@@ -8,8 +8,8 @@
  * Run locally:
  *   TELEGRAM_BOT_TOKEN=xxx TELEGRAM_CHAT_ID=yyy deno run --allow-net --allow-env index.ts
  */
-
-import { createNotifier } from "jsr:@supabase-alerts/core";
+// deno-lint-ignore-file no-import-prefix no-unversioned-import
+import { createNotifier } from "jsr:@ashwinkh/supabase-alerts";
 
 const alert = createNotifier({
   channel: "telegram",
@@ -25,7 +25,7 @@ const alert = createNotifier({
 });
 
 // Simulate a Supabase Edge Function handler
-Deno.serve(async (req: Request) => {
+Deno.serve((req: Request) => {
   try {
     // Simulate some work that might fail
     if (Math.random() > 0.5) {
